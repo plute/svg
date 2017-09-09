@@ -217,7 +217,9 @@ function zoomed() {
       .attr("transform",function(d){ return "translate("+ d[0] * 256 +","+ d[1] * 256 +")"; })
       .each(renderTiles);
     
-  nakagyo.attr("transform", matrix3d(zoom.scale(), zoom.translate()));
+  nakagyo.attr("transform", matrix3d(tiles.scale, tiles.translate))
+    .selectAll("nakagyo")
+      .data(tiles, function(d){ return d; });
 }
 
 var download = d3.select("#exportify")
