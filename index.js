@@ -141,8 +141,8 @@ var svgParent = map.append("div")
 var svg = svgParent.append("g");
 
 var nakagyo = d3.json("./kyoto_city_nakagyo.geojson", function(json) {
-  return svgParent.append("g")
-            .attr("class", "nakagyo")
+  return svg.append("g")
+            .attr("class", "tile")
             .selectAll("path")
             .data(json.features)
             .enter()
@@ -217,9 +217,9 @@ function zoomed() {
       .attr("transform",function(d){ return "translate("+ d[0] * 256 +","+ d[1] * 256 +")"; })
       .each(renderTiles);
     
-  nakagyo.attr("transform", matrix3d(tiles.scale, tiles.translate))
-    .selectAll("nakagyo")
-      .data(tiles, function(d){ return d; });
+//   nakagyo.attr("transform", matrix3d(tiles.scale, tiles.translate))
+//     .selectAll("nakagyo")
+//       .data(tiles, function(d){ return d; });
 }
 
 var download = d3.select("#exportify")
